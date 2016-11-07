@@ -9,13 +9,13 @@ master:
 slave1:
   image: csanchez/jenkins-swarm-slave
   hostname: slave1
-  command: -master http://master:8080 -username jenkins -password jenkins -executors 2
+  command: -master http://master:8080 -username jenkins -password jenkins -executors 2 -labels "LabTIC Win7_32b"
   links:
     - master
 
 slave2:
   image: csanchez/jenkins-swarm-slave
   hostname: slave2
-  command: -master http://master:8080 -username jenkins -password jenkins -executors 2
+  command: -master http://master:8080 -username jenkins -password jenkins -executors 2 -labels "LabTIC Win7_64b"
   links:
     - master
