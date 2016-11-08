@@ -1,10 +1,19 @@
 master:
-  build: jenkins-master/
+  image: blacklabelops/jenkins:alpine
   ports:
-    - 8080:8080
+    - 8090:8080
   expose:
     - 50000
     - 8080
+  volumes:
+    - /jenkins
+  environment:
+    - 'JAVA_VM_PARAMETERS=-Xmx512m -Xms256m'
+    - 'JENKINS_ADMIN_USER=jenkins'
+    - 'JENKINS_ADMIN_PASSWORD=swordfish'
+    - 'JENKINS_MASTER_EXECUTORS=0'
+    - 'JENKINS_PLUGINS=swarm git'
+    - 'JENKINS_SLAVEPORT=50000'
 
 slave1:
   image: csanchez/jenkins-swarm-slave
